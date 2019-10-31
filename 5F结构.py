@@ -32,7 +32,7 @@ for name,value in df.groupby(df['date']):
     data.append({'name':name,'value':value.close})
 for i in range(1,len(data)-1):
     filename = data[i]['name'].strftime('%y{y}%m{m}%d{d}').format(y='年',m='月',d='日')
-    path = r'C:\搜狗\python\5F结构\2019\%s.jpg'%filename
+    path = r'..\2019\%s.jpg'%filename
     if (data[i+1]['value'].iloc[-1] - data[i]['value'].iloc[-1])/data[i]['value'].iloc[-1]*100 > 0.2:
         label = 1 
     elif (data[i+1]['value'].iloc[-1] - data[i]['value'].iloc[-1])/data[i]['value'].iloc[-1]*100 < -0.2:
@@ -48,8 +48,8 @@ for i in range(1,len(data)-1):
     '''
     plt.axis('off')
     plt.plot(data[i]['value'])
-    plt.savefig(r'C:\搜狗\python\5F结构\%s.png'%filename)
+    plt.savefig(r'..\2019\%s.png'%filename)
     plt.close()
     '''
-with open(r'C:\搜狗\python\5F结构\2019\2019.txt','w') as f:
+with open(r'..\2019\2019.txt','w') as f:
     f.writelines(txt)
