@@ -28,19 +28,21 @@ df.time = df.time + delta
 df['date'] = df['time'].apply(lambda x:x.date())
 data = []
 txt = []
+days = 2
 for name,value in df.groupby(df['date']):
     data.append({'name':name,'value':value.close})
-for i in range(1,len(data)-1):
+for i in range(1,len(data)-days):
     filename = data[i]['name'].strftime('%y{y}%m{m}%d{d}').format(y='年',m='月',d='日')
     path = r'..\2019\%s.jpg'%filename
-    if (data[i+1]['value'].iloc[-1] - data[i]['value'].iloc[-1])/data[i]['value'].iloc[-1]*100 > 0.2:
+    if (data[i+days]['value'].iloc[-1] - data[i+days-1]['value'].iloc[-1])/data[i+days-1]['value'].iloc[-1]*100 > 0.2:
         label = 1 
-    elif (data[i+1]['value'].iloc[-1] - data[i]['value'].iloc[-1])/data[i]['value'].iloc[-1]*100 < -0.2:
+    elif (data[i+days]['value'].iloc[-1] - data[i+days-1]['value'].iloc[-1])/data[i+days-1]['value'].iloc[-1]*100 < -0.2:
         label = 2
     else:
         label = 0
     data[i]['label'] = label
-    ax = data[i]['value'].plot(color='w',figsize=(20,20),linewidth=3)
+    for j in range(days):
+        ax = data[i+j]['value'].plot(color='w',figsize=(20,20),linewidth=3)
     ax.axis('off')
     ax.get_figure().savefig(path,dpi=20)
     txt.append(path + ' ' + str(label) + '\n')
