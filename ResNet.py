@@ -122,6 +122,6 @@ class ResNet:
         model = Model(input, x, name="ResNet")
 
 		#model.summary()#输出网络结构信息
-        plot_model(model, to_file=r'C:\搜狗\python\5F结构\resnet_visualization1.png', show_shapes=True, show_layer_names=True)
+        plot_model(model, to_file=r'..\resnet_visualization.png', show_shapes=True, show_layer_names=True)
 		# Return the build network architecture.
         return model

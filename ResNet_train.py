@@ -76,8 +76,8 @@ def data_generator_wrapper(annotation_lines, batch_size):
 
 
 def _main():
-    annotation_path = '2019.txt'
-    log_dir = 'logs/000/'
+    annotation_path = '../2019.txt'
+    log_dir = '../logs/000/'
 
     model = ResNet.ResNet.build(400, 400, 3, 3, [3, 3, 3], [64, 128, 256, 512])
     #model.load_weights(log_dir + 'ep032-loss0.613-val_loss0.609.h5')
